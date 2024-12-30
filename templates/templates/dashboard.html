@@ -1,0 +1,81 @@
+{% extends 'templates/index.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="header">
+        <h2>Welcome, {{ user.username }}</h2>
+        <h3>ATM Dashboard</h3>
+    </div>
+
+    <div class="button-grid">
+        <a href="{% url 'withdraw' %}" class="button">Cash Withdrawal</a>
+        <a href="{% url 'balance_inquiry' %}" class="button">Balance Inquiries</a>
+        <a href="{% url 'fund_transfer' %}" class="button">Funds Transfer</a>
+        <a href="{% url 'account_info' %}" class="button">Account Information</a>
+        <a href="{% url 'user_update' %}" class="button">User Update</a>
+        <a href="{% url 'delete_user' %}" class="button">Delete User</a>
+        <a href="{% url 'recent_transactions' %}" class="button">View Recent Transactions</a>
+        <a href="{% url 'logout' %}" class="button">Quit</a>
+    </div>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .dashboard-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+    }
+
+    .header {
+        margin-bottom: 40px;
+    }
+
+    .header h2 {
+        color: #2c3e50;
+        font-size: 28px;
+    }
+
+    .header h3 {
+        color: #7f8c8d;
+        font-size: 18px;
+    }
+
+    .button-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .button {
+        background: #3498db;
+        color: white;
+        padding: 15px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 16px;
+        text-align: center;
+        transition: background 0.3s ease;
+        display: block;
+        box-sizing: border-box;
+    }
+
+    .button:hover {
+        background: #2980b9;
+    }
+</style>
+
+{% endblock %}

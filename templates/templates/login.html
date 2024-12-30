@@ -1,0 +1,137 @@
+{% extends 'templates/index.html' %}
+
+{% block content %}
+<div class="login-container">
+    <div class="header">
+        <h2>Login</h2>
+        <p>Enter your credentials to log in to your account.</p>
+    </div>
+
+    <!-- Login Form Card -->
+    <div class="card login-form-card">
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                {{ form.password }}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Log In</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Sign Up Link -->
+    <div class="actions">
+        <p>Don't have an account? <a href="{% url 'signup' %}" class="link-signup">Sign up here</a></p>
+    </div>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+    }
+
+    .header h2 {
+        color: #2c3e50;
+        font-size: 28px;
+    }
+
+    .header p {
+        color: #7f8c8d;
+        font-size: 16px;
+    }
+
+    /* Card Styles */
+    .card {
+        background: linear-gradient(135deg, #e8f0fe, #ffffff);
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .login-form-card h3 {
+        margin-bottom: 15px;
+        color: #3498db;
+        border-bottom: 2px solid #3498db;
+        display: inline-block;
+    }
+
+    /* Form Fields */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #7f8c8d;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .form-group input:focus {
+        border-color: #3498db;
+        outline: none;
+    }
+
+    /* Button Styles */
+    .btn {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 40px;
+        border-radius: 25px;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+
+    /* Sign Up Link Styles */
+    .actions p {
+        font-size: 16px;
+        color: #7f8c8d;
+    }
+
+    .link-signup {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .link-signup:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,220 @@
+{% extends 'templates/index.html' %}
+
+{% block content %}
+<div class="signup-container">
+    <div class="header">
+        <h2>Sign Up</h2>
+        <p>Create a new account by filling in the details below:</p>
+    </div>
+
+    <!-- Display General Errors (if any) -->
+    {% if form.errors %}
+    <div class="form-errors">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Sign Up Form Card -->
+    <div class="card signup-form-card">
+        <form method="POST" class="signup-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <div class="error-message">
+                        {% for error in form.first_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <div class="error-message">
+                        {% for error in form.last_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="error-message">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="error-message">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="password1">Password</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="error-message">
+                        {% for error in form.password1.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="error-message">
+                        {% for error in form.password2.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Sign Up</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Login Link -->
+    <div class="actions">
+        <p>Already have an account? <a href="{% url 'login' %}" class="link-login">Log in here</a></p>
+    </div>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .signup-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+    }
+
+    .header h2 {
+        color: #2c3e50;
+        font-size: 28px;
+    }
+
+    .header p {
+        color: #7f8c8d;
+        font-size: 16px;
+    }
+
+    /* Card Styles */
+    .card {
+        background: linear-gradient(135deg, #e8f0fe, #ffffff);
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .signup-form-card h3 {
+        margin-bottom: 15px;
+        color: #3498db;
+        border-bottom: 2px solid #3498db;
+        display: inline-block;
+    }
+
+    /* Form Fields */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #7f8c8d;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .form-group input:focus {
+        border-color: #3498db;
+        outline: none;
+    }
+
+    /* Button Styles */
+    .btn {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 40px;
+        border-radius: 25px;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+
+    /* Error Messages */
+    .error-message {
+        color: #e74c3c;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    /* Login Link Styles */
+    .actions p {
+        font-size: 16px;
+        color: #7f8c8d;
+    }
+
+    .link-login {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .link-login:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

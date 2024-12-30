@@ -1,0 +1,146 @@
+{% extends 'templates/index.html' %}
+
+{% block content %}
+<div class="transactions-container">
+    <div class="header">
+        <h2>Recent Transactions</h2>
+        <p>View your recent transaction history below:</p>
+    </div>
+
+    <!-- Transaction List -->
+    <div class="card transaction-list-card">
+        <ul class="transactions-list">
+            {% for transaction in transactions %}
+            <li class="transaction-item">
+                <div class="transaction-header">
+                    <strong>{{ transaction.transaction_type|capfirst }}:</strong>
+                    <span class="transaction-amount">${{ transaction.amount }}</span>
+                </div>
+                <div class="transaction-timestamp">
+                    on {{ transaction.timestamp|date:"M. d, Y, h:i a" }}
+                </div>
+                {% if transaction.transaction_type == 'transfer' %}
+                    <div class="transaction-details">
+                        <strong>From:</strong> {{ transaction.get_sender_name }}
+                        <br>
+                        <strong>To:</strong> {{ transaction.get_receiver_name }}
+                    </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Back to Dashboard Link -->
+    <div class="actions">
+        <a href="{% url 'dashboard' %}" class="btn-back-to-dashboard">Back to Dashboard</a>
+    </div>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .transactions-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+    .header h2 {
+        color: #2c3e50;
+        font-size: 28px;
+    }
+
+    .header p {
+        color: #7f8c8d;
+        font-size: 16px;
+    }
+
+    /* Transaction List Card */
+    .card {
+        background: linear-gradient(135deg, #e8f0fe, #ffffff);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    /* Transaction List */
+    .transactions-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .transaction-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .transaction-item:hover {
+        background-color: #f9fafb;
+    }
+
+    /* Transaction Header */
+    .transaction-header {
+        font-size: 16px;
+        font-weight: bold;
+        color: #3498db;
+    }
+
+    .transaction-amount {
+        font-size: 18px;
+        color: #2980b9;
+        margin-left: 10px;
+    }
+
+    /* Timestamp */
+    .transaction-timestamp {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-top: 8px;
+    }
+
+    /* Transaction Details */
+    .transaction-details {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-top: 10px;
+    }
+
+    /* Button Styles */
+    .actions {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .btn-back-to-dashboard {
+        display: inline-block;
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 40px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background 0.3s ease;
+    }
+
+    .btn-back-to-dashboard:hover {
+        background-color: #2980b9;
+    }
+</style>
+
+{% endblock %}

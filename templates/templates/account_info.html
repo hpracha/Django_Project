@@ -1,0 +1,149 @@
+{% extends 'templates/index.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="header">
+        <h2>Account Information</h2>
+        <p>Review your personal and account details below.</p>
+    </div>
+
+    <!-- User Information -->
+    <div class="card user-info">
+        <h3>Personal Details</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td><strong>Username:</strong></td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Email:</strong></td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td><strong>First Name:</strong></td>
+                    <td>{{ user.first_name }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Last Name:</strong></td>
+                    <td>{{ user.last_name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Account Information -->
+    <div class="accounts">
+        {% for account in accounts %}
+        <div class="card account-card">
+            <h3>{{ account.account_type.capitalize }} Account</h3>
+            <p><strong>Account Number:</strong> {{ account.account_number }}</p>
+            <p><strong>Balance:</strong> ${{ account.balance }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="actions">
+        <a href="{% url 'dashboard' %}" class="btn">Back to Dashboard</a>
+    </div>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+    .profile-container {
+        max-width: 900px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .header h2 {
+        color: #2c3e50;
+    }
+    .header p {
+        color: #7f8c8d;
+    }
+
+    /* Card Styles */
+    .card {
+        background: linear-gradient(135deg, #e8f0fe, #ffffff);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: scale(1.02);
+    }
+
+    .user-info h3 {
+        margin-bottom: 15px;
+        color: #3498db;
+        border-bottom: 2px solid #3498db;
+        display: inline-block;
+    }
+
+    /* Table Styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    td {
+        padding: 10px;
+        vertical-align: top;
+    }
+    td:first-child {
+        color: #2c3e50;
+        font-weight: bold;
+    }
+    td:last-child {
+        color: #34495e;
+    }
+
+    /* Account Cards */
+    .accounts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    .account-card h3 {
+        color: #2980b9;
+        margin-bottom: 10px;
+    }
+    .account-card p {
+        color: #7f8c8d;
+        margin: 5px 0;
+    }
+
+    /* Button Styles */
+    .actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .btn {
+        display: inline-block;
+        background: #3498db;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background 0.3s ease;
+    }
+    .btn:hover {
+        background: #1d6fa5;
+    }
+</style>
+{% endblock %}

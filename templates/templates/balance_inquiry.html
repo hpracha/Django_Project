@@ -1,0 +1,112 @@
+{% extends 'templates/index.html' %}
+
+{% block content %}
+<div class="balance-container">
+    <div class="header">
+        <h2>Balance Inquiry</h2>
+        <p>Your Balance:</p>
+    </div>
+
+    <!-- Balance Information -->
+    <div class="card balance-card">
+        <ul class="balance-list">
+            {% for account in accounts %}
+                <li class="balance-item">
+                    <strong>{{ account.account_type.capitalize }} Account</strong>: 
+                    <span class="balance-amount">${{ account.balance }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <div class="actions">
+        <a href="{% url 'dashboard' %}" class="btn-back">Back to Dashboard</a>
+    </div>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .balance-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .header h2 {
+        color: #2c3e50;
+        font-size: 28px;
+    }
+
+    .header p {
+        color: #7f8c8d;
+        font-size: 16px;
+    }
+
+    /* Balance Information Card */
+    .balance-card {
+        background: linear-gradient(135deg, #e8f0fe, #ffffff);
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* List of Accounts */
+    .balance-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .balance-item {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .balance-amount {
+        color: green;
+        font-weight: bold;
+    }
+
+    /* Button Styles */
+    .actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-back {
+        display: inline-block;
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 40px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background 0.3s ease;
+    }
+
+    .btn-back:hover {
+        background-color: #2980b9;
+    }
+</style>
+
+{% endblock %}

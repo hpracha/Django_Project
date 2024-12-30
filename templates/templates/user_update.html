@@ -1,0 +1,152 @@
+{% extends 'templates/index.html' %}
+
+{% block content %}
+<div class="user-update-container">
+    <div class="header">
+        <h2>Update Your Information</h2>
+        <p>Make changes to your personal information below.</p>
+    </div>
+
+    <!-- User Update Form -->
+    <div class="card update-form-card">
+        <form method="POST" class="update-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="{{ form.email.value }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">New Password (Optional)</label>
+                <input type="password" id="password" name="password">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Update Information</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Navigation -->
+    <div class="actions">
+        <a href="{% url 'dashboard' %}" class="btn-back">Back to Dashboard</a>
+    </div>
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .user-update-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .header h2 {
+        color: #2c3e50;
+        font-size: 28px;
+    }
+
+    .header p {
+        color: #7f8c8d;
+        font-size: 16px;
+    }
+
+    /* Form Card */
+    .update-form-card {
+        background: linear-gradient(135deg, #e8f0fe, #ffffff);
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form Fields */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        font-weight: bold;
+        color: #7f8c8d;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .form-group input:focus {
+        border-color: #3498db;
+        outline: none;
+    }
+
+    /* Button Styles */
+    .btn {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 16px;
+        width: 100%;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+
+    /* Back Button Styles */
+    .actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-back {
+        display: inline-block;
+        background-color: #95a5a6;
+        color: #fff;
+        padding: 12px 40px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .btn-back:hover {
+        background-color: #7f8c8d;
+    }
+</style>
+
+{% endblock %}
